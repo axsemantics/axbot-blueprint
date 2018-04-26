@@ -1,0 +1,9 @@
+# base
+Django<2.1
+django-extensions
+psycopg2
+requests
+
+# deployment
+gunicorn
+python-memcached
