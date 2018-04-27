@@ -2,11 +2,11 @@ version: '3'
 
 services:
   db:
-    image: postgres:10.3
+    image: postgres:10.3-alpine
   memcached:
-    image: memcached:1.5
+    image: memcached:1.5-alpine
   nginx:
-    image: nginx
+    image: nginx:mainline-alpine
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - static_files:/var/www/static/
