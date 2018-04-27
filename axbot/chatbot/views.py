@@ -62,7 +62,7 @@ class Ax(View):
         # dialogflow response json format
         response_data = self.postprocessing(request, ax_instant_request)
         return HttpResponse(
-            json.dumps(response_data), content_type="application/json")
+            json.dumps(response_data), content_type='application/json')
 
     def preprocessing(self, request, obj):
         p = re.compile(r'[^a-zA-Z\d]')
@@ -73,11 +73,11 @@ class Ax(View):
         # to use other message objects see: https://dialogflow.com/docs/reference/agent/message-objects
         texttosend = ax_instant_request.ax_text
         response_data = {
-            "speech": texttosend,
-            "displayText": texttosend,
-            "data": {},
-            "contextOut": [],
-            "source": "webhook"
+            'speech': texttosend,
+            'displayText': texttosend,
+            'data': {},
+            'contextOut': [],
+            'source': 'webhook',
         }
         return response_data
 
@@ -93,8 +93,10 @@ class Ax(View):
         url = f'https://api.ax-semantics.com/v2/instant/{instantid}/generate-content/{uid}/'
         payload = json.dumps(obj)
         apitoken = self.get_apitoken(request)
-        headers = {'authorization': f'JWT {apitoken}',
-                   'content-type': "application/json"}
+        headers = {
+            'authorization': f'JWT {apitoken}',
+            'content-type': 'application/json',
+        }
         response = requests.post(
             url=url,
             data=payload,
@@ -116,8 +118,4 @@ class Ax(View):
         return get_apitoken(refresh_token)
 
     def get_refresh_token(self, request):
-        if self.refresh_token is None:
-            return settings.AX_REFRESH_TOKEN
-        return self.refresh_token
-
-# Create your views here.
+        return self.refresh_token or settings.AX_REFRESH_TOKEN

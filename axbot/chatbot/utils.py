@@ -25,8 +25,7 @@ def convert_keys(obj, p):
             except Exception as e:
                 # print(k,v,"\t<<>> Error")
                 pass
-    else:
-        return obj
+
     return obj
 
 
@@ -48,9 +47,9 @@ def token_exchange(refresh_token):
     response = requests.post(
         url='https://api.ax-semantics.com/v3/token-exchange/',
         data=json.dumps({
-            "refresh_token": refresh_token,
+            'refresh_token': refresh_token,
         }),
-        headers={"Content-Type": "application/json"},
+        headers={'Content-Type': 'application/json'},
     )
     return response.json()
 
