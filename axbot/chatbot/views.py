@@ -4,16 +4,14 @@ from time import sleep
 from uuid import uuid4
 
 import requests
+from django.conf import settings
 from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
-
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 
 from .models import AxResponse
 from .utils import convert_keys, get_apitoken, signature_valid
-
-from django.conf import settings
 
 
 class AxWebhook(View):

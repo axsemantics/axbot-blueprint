@@ -1,5 +1,6 @@
 from django.contrib.admin import ModelAdmin, register
-from.models import AxResponse
+
+from .models import AxResponse
 
 
 @register(AxResponse)
