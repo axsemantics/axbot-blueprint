@@ -23,6 +23,6 @@ before_script:
   - docker-compose logs
 
 script:
-  - docker-compose run --rm web bash -c "pip install pytest pylama > /dev/null && pytest --pylama"
+  - docker-compose run --rm web bash -c "pip install pytest-django pylama > /dev/null && pytest --create-db --migrations --pylama -s"
   - docker-compose run --rm web ./manage.py reset_db --noinput > /dev/null; docker-compose run web ./manage.py makemigrations --check
   - docker-compose run --rm web bash -c "pip install isort > /dev/null && isort --recursive --check-only --diff"

@@ -25,16 +25,17 @@ class AxWebhook(View):
         isvalid = signature_valid(self.get_webhooksecret(), request)
         if not isvalid:
             return HttpResponse(status=403)
+
         body_unicode = request.body.decode(request.encoding or 'utf-8')
         body = json.loads(body_unicode)
-        if body['error']:
-            AxResponse.objects.create(
-                ax_uid=body['uid'], ax_error=body['error']
-            )
-        else:
-            AxResponse.objects.create(
-                ax_uid=body['uid'], ax_error=body['error'], ax_text=body['text']
-            )
+        error = bool(body.get('error'))
+
+        AxResponse.objects.create(
+            ax_uid=body['uid'],
+            ax_error=error,
+            ax_text=body['text'] if not error else None,
+        )
+
         return HttpResponse(status=201)
 
     def get_webhooksecret(self):
