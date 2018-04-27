@@ -37,7 +37,7 @@ def get_apitoken(refresh_token):
 
     token_cache = caches[token_cache_name]
     token_hash = hashlib.sha256(refresh_token.encode())
-    cache_key = f'AX_API_ID_TOKEN_{token_hash.hexdigest()}'
+    cache_key = 'AX_API_ID_TOKEN_{}'.format(token_hash.hexdigest())
     id_token = token_cache.get(cache_key)
     if id_token is None:
         response = token_exchange(refresh_token)

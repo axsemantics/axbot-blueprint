@@ -83,20 +83,23 @@ class Ax(View):
         }
         return response_data
 
-    def get_instantid(self, request):
+    def get_instant_id(self, request):
         if self.instant_id is None:
             return settings.AX_INSTANT_ID
         return self.instant_id
 
     def generate_ax_text(self, request, obj):
         uuid = uuid4()
-        instantid = self.get_instantid(request)
+        instant_id = self.get_instant_id(request)
         uid = str(uuid)
-        url = f'https://api.ax-semantics.com/v2/instant/{instantid}/generate-content/{uid}/'
+        url = 'https://api.ax-semantics.com/v2/instant/{id}/generate-content/{uid}/'.format(
+            id=instant_id,
+            uid=uid,
+        )
         payload = json.dumps(obj)
         apitoken = self.get_apitoken(request)
         headers = {
-            'authorization': f'JWT {apitoken}',
+            'authorization': 'JWT {}'.format(apitoken),
             'content-type': 'application/json',
         }
         response = requests.post(

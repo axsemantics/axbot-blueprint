@@ -7,6 +7,6 @@ def test_instant_id():
     assert Ax.instant_id is None
 
     with pytest.raises(AttributeError) as exc:
-        Ax().get_instantid(request=None)
+        Ax().get_instant_id(request=None)
 
     assert "'Settings' object has no attribute 'AX_INSTANT_ID'" in str(exc)
