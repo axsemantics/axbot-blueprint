@@ -1,6 +1,7 @@
 from django.db import models
 from django_extensions.db.models import TimeStampedModel
 
+
 class AxResponse(TimeStampedModel):
     ax_uid = models.UUIDField(unique=True)
     ax_text = models.TextField(null=False, blank=True)
@@ -10,5 +11,3 @@ class AxResponse(TimeStampedModel):
 
     # SessionId passed from and to Dialogflow
     df_UserSessionId = models.TextField(null=False, blank=True)
-    
-# Create your models here.
