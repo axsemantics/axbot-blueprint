@@ -30,7 +30,11 @@ def convert_keys(obj, p):
 
 
 def get_apitoken(refresh_token):
-    token_cache_name = settings.AX_TOKEN_CACHE if hasattr(settings, 'AX_TOKEN_CACHE') else 'default'
+    try:
+        token_cache_name = settings.AX_TOKEN_CACHE
+    except AttributeError:
+        token_cache_name = 'default'
+
     token_cache = caches[token_cache_name]
     token_hash = hashlib.sha256(refresh_token.encode())
     cache_key = f'AX_API_ID_TOKEN_{token_hash.hexdigest()}'

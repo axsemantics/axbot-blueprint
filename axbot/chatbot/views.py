@@ -70,7 +70,8 @@ class Ax(View):
         return obj
 
     def postprocessing(self, request, ax_instant_request):
-        # to use other message objects see: https://dialogflow.com/docs/reference/agent/message-objects
+        # to use other message objects see:
+        # https://dialogflow.com/docs/reference/agent/message-objects
         texttosend = ax_instant_request.ax_text
         response_data = {
             'speech': texttosend,
