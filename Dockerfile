@@ -17,7 +17,7 @@ RUN apk update \
 		postgresql-dev \
 	&& python3 -m pip install -r requirements.txt --no-cache-dir \
 	&& apk --purge del .build-deps \
-	&& find /root/.cache -name pip -type d -prune -exec rm -r {} \;
+	&& test ! -e /root/.cache
 
 COPY . /code/
 WORKDIR /code/axbot
