@@ -13,14 +13,13 @@ install:
   - sudo apt-get update
   - sudo apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" docker-ce
   - sudo pip install docker-compose
-  - if test "${TRAVIS_PYTHON_VERSION:-3.6}" = "3.6" ; then export ALPINE_VERSION=3.7; else export ALPINE_VERSION=3.4; fi
 
 before_script:
   - docker version
   - docker-compose --version
   - docker-compose up -d db
   - echo "SECRET_KEY = '1234'" >> axbot/axbot/settings/dev.py
-  - docker-compose build --pull --build-arg PYTHON_VERSION="${TRAVIS_PYTHON_VERSION:-3.6}" --build-arg ALPINE_VERSION="${ALPINE_VERSION:-3.7}" web
+  - docker-compose build --pull --build-arg PYTHON_VERSION="${TRAVIS_PYTHON_VERSION:-3.6}" web
   - docker-compose run --rm db psql -h db -U postgres -c "CREATE DATABASE axbot;"
   - docker-compose up -d
   - docker-compose logs
