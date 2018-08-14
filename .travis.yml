@@ -6,7 +6,6 @@ python:
   - 3.4
   - 3.5
   - 3.6
-  - 3.7-dev
 env:
   - COMPOSE_FILE=docker-compose.yml
 
@@ -29,3 +28,8 @@ script:
   - docker-compose run --rm web sh -c "pip install pytest-django pylama > /dev/null && pytest --create-db --migrations --pylama -s"
   - docker-compose run --rm web sh -c "./manage.py reset_db --noinput > /dev/null; ./manage.py makemigrations --check"
   - docker-compose run --rm web sh -c "pip install isort > /dev/null && isort --recursive --check-only --diff"
+
+matrix:
+  include:
+    - python: 3.7
+      dist: xenial
