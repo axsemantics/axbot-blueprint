@@ -25,7 +25,7 @@ before_script:
   - docker-compose logs
 
 script:
-  - docker-compose run --rm web sh -c "pip install prospector pylint-django && prospector --uses django -i axbot/settings"
+  - docker-compose run --rm web sh -c "apk add build-base && pip install prospector pylint-django && prospector --uses django -i axbot/settings"
   - docker-compose run --rm web sh -c "./manage.py reset_db --noinput > /dev/null; ./manage.py makemigrations --check"
   - docker-compose run --rm web sh -c "pip install isort > /dev/null && isort --recursive --check-only --diff"
 
