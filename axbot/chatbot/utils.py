@@ -9,14 +9,12 @@ from django.core.cache import caches
 
 def convert_keys(obj, p):
     if isinstance(obj, dict):
-        for k, v in obj.items():
+        for k in obj.keys():
             convert_keys(obj[k], p)
             try:
                 tempkey = p.sub('_', k)
                 obj[tempkey] = obj.pop(k)
-                # print("try to change\t", k, "with\t", tempkey)
             except Exception:
-                # print(k, v, "\t<<>> Error")
                 pass
     elif isinstance(obj, list):
         for item in obj:
