@@ -15,15 +15,15 @@ def convert_keys(obj, p):
                 tempkey = p.sub('_', k)
                 obj[tempkey] = obj.pop(k)
                 # print("try to change\t", k, "with\t", tempkey)
-            except Exception as e:
-                # print(k,v,"\t<<>> Error")
+            except Exception:
+                # print(k, v, "\t<<>> Error")
                 pass
     elif isinstance(obj, list):
         for item in obj:
             try:
                 convert_keys(item, p)
-            except Exception as e:
-                # print(k,v,"\t<<>> Error")
+            except Exception:
+                # print(k, v, "\t<<>> Error")
                 pass
 
     return obj
