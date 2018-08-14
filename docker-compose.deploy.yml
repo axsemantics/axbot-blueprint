@@ -2,7 +2,7 @@ version: '3'
 
 services:
   db:
-    image: postgres:10.3-alpine
+    image: postgres:10.5-alpine
   memcached:
     image: memcached:1.5-alpine
   nginx:
