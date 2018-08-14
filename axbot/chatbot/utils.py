@@ -65,12 +65,8 @@ def signature_valid(secret, request):
             msg=raw_data,
             digestmod=hashlib.sha1,
         ).hexdigest()
-    except AttributeError:
+    except (AttributeError, KeyError, Exception):
         pass
-    except KeyError:
-        pass
-    except Exception:
-        raise
     else:
         return bool(signature_header == signature_content)
     return False
