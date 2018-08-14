@@ -5,7 +5,7 @@ from uuid import uuid4
 
 import requests
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
@@ -62,8 +62,7 @@ class Ax(View):
 
         # dialogflow response json format
         response_data = self.postprocessing(request, ax_instant_request)
-        return HttpResponse(
-            json.dumps(response_data), content_type='application/json')
+        return JsonResponse(response_data)
 
     def preprocessing(self, request, obj):
         p = re.compile(r'[^a-zA-Z\d]')
