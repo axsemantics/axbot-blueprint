@@ -1,5 +1,5 @@
 # base
-Django<2.2
+Django~=3.0.7
 django-extensions
 psycopg2
 requests
