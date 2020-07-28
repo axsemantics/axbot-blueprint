@@ -12,7 +12,7 @@ env:
 install:
   - sudo apt-get update
   - sudo apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" docker-ce
-  - sudo pip install -U docker-compose pyopenssl
+  - python -m pip install -U docker-compose
 
 before_script:
   - docker version
